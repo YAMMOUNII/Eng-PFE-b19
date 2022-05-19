@@ -5,7 +5,7 @@ import {TouchableOpacity, Text} from "react-native";
 
 
 
-function BottomTabs(props) {
+function BottomTabs({navigation, ...props}) {
     return (
         <View style={{
             flexDirection: "row",
@@ -13,13 +13,23 @@ function BottomTabs(props) {
             padding: 5,
             marginHorizontal: 30,
             justifyContent: "space-between",
-            backgroundColor: "white"
+            backgroundColor: "white",
         }}>
-            <Icon name="home" title="Home"/>
-            <Icon name="bar-chart" title="Dashboard"/>
-            <Icon name="briefcase" title="Services"/>
-            <Icon name="users" title="Media"/>
-            <Icon name="tasks" title="Settings"/>
+            {/*<TouchableOpacity onPress={*/}
+            {/*    () => navigation.navigate("Services", {})*/}
+            {/*}>*/}
+            {/*    <View style={{ marginHorizontal: 15}}>*/}
+            {/*        <FontAwesome name="home" size={30} style={{ alignSelf: "center"}}/>*/}
+            {/*        <Text style={{*/}
+            {/*            fontSize:12*/}
+            {/*        }}>Home</Text>*/}
+            {/*    </View>*/}
+            {/*</TouchableOpacity>*/}
+            <Icon name="home" title="Home" navigation={navigation}/>
+            <Icon name="bar-chart" title="Dashboard" navigation={navigation}/>
+            <Icon name="briefcase" title="Services" navigation={navigation}/>
+            <Icon name="users" title="Media" navigation={navigation}/>
+            <Icon name="tasks" title="Settings"  navigation={navigation}/>
 
         </View>
     );
@@ -28,8 +38,10 @@ function BottomTabs(props) {
 export default BottomTabs;
 
 
-const Icon = (props) => (
-    <TouchableOpacity>
+const Icon = ({navigation, ...props}) => (
+    <TouchableOpacity onPress={
+        () => navigation.navigate(props.title, {})
+    }>
         <View style={{ marginHorizontal: 15}}>
             <FontAwesome name={props.name} size={30} style={{ alignSelf: "center"}}/>
             <Text style={{

@@ -5,7 +5,7 @@ import {Ionicons} from '@expo/vector-icons';
 import {ScrollView} from "react-native";
 
 
-const RegisterLogin = () => {
+const RegisterLogin = ({ navigation }) => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
 
@@ -35,7 +35,10 @@ const RegisterLogin = () => {
                 />
 
                 <View style={{alignItems: "flex-end", marginTop: 64}}>
-                    <TouchableOpacity style={styles.continue}>
+                    <TouchableOpacity
+                        style={styles.continue}
+                        onPress={() => navigation.navigate("Home", {})}
+                    >
                         <Ionicons name="arrow-forward" size={30} color="#FFF" />
                     </TouchableOpacity>
 
